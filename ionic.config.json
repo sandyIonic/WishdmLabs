@@ -1,5 +1,9 @@
 {
   "name": "wisdmLabs",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "0a78efc8"
 }
