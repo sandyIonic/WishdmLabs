@@ -1,14 +1,61 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      WisdmLabs
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+    <ion-searchbar (ionInput)="onSearchTerm($event)" placeholder="Search a film"></ion-searchbar>
+
+   <div *ngIf="loaded">
+        <ion-list *ngIf="isItemAvailable">
+            <ion-list-header center><ion-label > FILMS</ion-label></ion-list-header>
+        
+         <ion-item *ngFor="let film of items" routerLink="/home-detail/{{film.id}}" routerDirection="forward">
+            <ion-avatar slot="start">
+                <img src="../assets/icon/favicon.png">
+              </ion-avatar>
+              <ion-label>
+                <h3>
+                Name : {{ film.title }}
+                </h3>
+                <p>
+                Director :  {{ film.director }}
+                </p>
+                <p>
+                 Release : {{ film.release_date }}
+                </p>
+              </ion-label>
+      
+          </ion-item>
+      
+      </ion-list>
+       </div>
+<div *ngIf="!loaded">
+    
+        <ion-list>
+            <ion-list-header>
+              <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+            </ion-list-header>
+            <ion-item *ngFor="let item of [].constructor(20)">
+              <ion-avatar slot="start">
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </ion-avatar>
+              <ion-label>
+                <h3>
+                  <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                </h3>
+                <p>
+                  <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                </p>
+                <p>
+                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                </p>
+              </ion-label>
+            </ion-item>
+  
+  </ion-list>
+</div>
 </ion-content>
